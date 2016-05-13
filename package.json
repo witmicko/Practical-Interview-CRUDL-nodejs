@@ -16,8 +16,10 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "body-parser": "^1.15.1",
     "express": "4.x",
-    "mongodb": "^2.1.18"
+    "mongodb": "^2.1.18",
+    "morgan": "^1.7.0"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
