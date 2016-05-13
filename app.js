@@ -21,7 +21,7 @@ var app = express();
 
 app.set('port', (process.env.PORT || 5000));
 app.use(morgan('dev'));
-app.use(bodyParser());
+app.use(bodyParser.json());
 
 
 // app.configure('development', function(){
@@ -31,7 +31,7 @@ app.use(bodyParser());
 
 routes.init();
 app.get('/',            routes.index);
-app.get('/createUser',  routes.createUser);
+app.post('/createUser',  routes.createUser);
 app.get('/resetData',   routes.populate);
 
 
