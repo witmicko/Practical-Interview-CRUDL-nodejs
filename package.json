@@ -13,7 +13,8 @@
     "email": "mjogrodniczak@gmail.com"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test" : "mocha"
   },
   "dependencies": {
     "bluebird": "^3.3.5",
