@@ -16,7 +16,8 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "4.x"
+    "express": "4.x",
+    "mongodb": "^2.1.18"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
