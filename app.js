@@ -1,9 +1,10 @@
-var express    = require('express'),
-	routes     = require('./routes'),
-	http       = require('http'),
-    fs         = require('fs'),
-	bodyParser = require('body-parser'),
-	morgan     = require('morgan');
+'use strict';
+var express = require('express'),
+    routes  = require('./routes'),
+    http    = require('http'),
+    fs      = require('fs'),
+    bodyParser = require('body-parser'),
+    morgan  = require('morgan');
 
 var app = express();
 
@@ -18,7 +19,6 @@ var app = express();
 // routes.init(config);
 
 
-
 app.set('port', (process.env.PORT || 5000));
 app.use(morgan('dev'));
 app.use(bodyParser());
@@ -30,11 +30,11 @@ app.use(bodyParser());
 // });
 
 routes.init();
-app.get('/', routes.index);
-app.get('/resetData', routes.populate);
+app.get('/',            routes.index);
+app.get('/createUser',  routes.createUser);
+app.get('/resetData',   routes.populate);
 
 
-
-http.createServer(app).listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
+http.createServer(app).listen(app.get('port'), function () {
+    console.log("Express server listening on port " + app.get('port'));
 });

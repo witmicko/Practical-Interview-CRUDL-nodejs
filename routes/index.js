@@ -6,12 +6,11 @@
 var db = require('../lib/db')();
 
 exports.index = function (req, res) {
-    db.connect().then(function (result) {
-        console.log(result);
-        res.status(200).json({'hello': 'world', 'db': result});
-    });
+    res.status(200).json({'hello': 'world'});
+};
 
-
+exports.createUser = function (req, res) {
+    res.status(200).json({'hello': 'world'});
 };
 
 exports.populate = function (req, res) {
@@ -19,11 +18,8 @@ exports.populate = function (req, res) {
     res.status(200).json(obj);
 };
 
-
 exports.init = function () {
     db.connect().then(function (result) {
         console.log(result);
     });
-
-
 };
