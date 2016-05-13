@@ -3,6 +3,13 @@
  */
 "use strict";
 
+var db = require('../lib/db')();
+
 exports.index = function (req, res) {
-    res.status(200).json({'hello': 'world'});
+    db.connect().then(function (result) {
+        console.log(result);
+        res.status(200).json({'hello': 'world', 'db': result});
+    });
+
+
 };
