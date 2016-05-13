@@ -1,0 +1,29 @@
+{
+  "author": "Michal Ogrodniczak",
+  "name": "Practical-Interview-CRUDL-nodejs",
+  "version": "0.0.1",
+  "main": "app.js",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/witmicko/Practical-Interview-CRUDL-nodejs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/witmicko/Practical-Interview-CRUDL-nodejs/issues",
+    "email": "mjogrodniczak@gmail.com"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "4.x"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-nodeunit": "~0.4.1"
+  },
+  "engines": {
+    "node": "0.8.x"
+  }
+}
