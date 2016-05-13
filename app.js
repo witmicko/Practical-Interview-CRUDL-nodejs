@@ -31,8 +31,8 @@ app.use(bodyParser.json());
 
 routes.init();
 app.get('/',            routes.index);
-app.post('/createUser',  routes.createUser);
-app.get('/resetData',   routes.populate);
+app.post('/api/createUser',  routes.createUser);
+app.get('/api/resetData',   routes.populate);
 
 
 http.createServer(app).listen(app.get('port'), function () {

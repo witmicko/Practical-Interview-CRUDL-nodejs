@@ -16,7 +16,6 @@ exports.createUser = function (req, res) {
 
     if (true === valid) {
         db.createUser(user).then(function (data) {
-            console.log(data);
             var jj = {'result': data.result, 'user': data.ops[0]};
             res.status(HttpStatus.CREATED).json(jj);
         });
