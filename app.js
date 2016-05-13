@@ -29,8 +29,9 @@ app.use(bodyParser());
 // 	app.locals.inspect = require('util').inspect;
 // });
 
-
+routes.init();
 app.get('/', routes.index);
+app.get('/resetData', routes.populate);
 
 
 

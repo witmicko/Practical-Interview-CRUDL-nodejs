@@ -13,3 +13,17 @@ exports.index = function (req, res) {
 
 
 };
+
+exports.populate = function (req, res) {
+    var obj = db.resetData();
+    res.status(200).json(obj);
+};
+
+
+exports.init = function () {
+    db.connect().then(function (result) {
+        console.log(result);
+    });
+
+
+};
