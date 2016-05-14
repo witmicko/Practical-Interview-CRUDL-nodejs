@@ -51,7 +51,37 @@ exports.create_user = function (req, res) {
         }
     });
 };
+exports.update_user = function (req, res) {
+    var new_user = req.body,
+        id = req.params.id,
+        valid = validator.validate_user(new_user),
+        invalid_keys = {};
 
+    if (true !== valid) {
+        Object.keys(valid).forEach(function (key) {
+            invalid_keys[key] = "invalid or missing";
+        });
+        return res.status(HttpStatus.BAD_REQUEST).json({'invalid_keys': invalid_keys});
+    }
+
+    new_user.id = id;
+    db.get_user(id).then(function (doc) {
+        if (doc.length === 0) return res.status(HttpStatus.NOT_FOUND).json({err: "User not found"});
+        var old_user = doc[0],
+        //check if email, username or pps were changed
+            uname_upd = new_user.username.localeCompare(old_user.username) !== 0,
+            email_upd = new_user.email.localeCompare(old_user.email) !== 0,
+            pps_upd = new_user.PPS.localeCompare(old_user.PPS) !== 0;
+
+        if (uname_upd || email_upd || pps_upd) {
+            return res.status(HttpStatus.BAD_REQUEST)
+                .json({'err': 'Not allowed to change email, username or pps no.'});
+        }
+        db.update_user(id, new_user, {upsert: false}).then(function () {
+            return res.status(HttpStatus.OK).json({ok: true});
+        });
+    });
+};
 /*
     Simple find by: email, username, pps no. needs exact match to work
  */
