@@ -43,15 +43,16 @@ var user_1 = {
 
 
 describe('User', function () {
-    before(function () {
-        MongoClient.connect('mongodb://localhost:27017/test').then(function (db) {
-            db.collection('users').removeMany({'username': user_1.username});
-        });
-    });
+
 
     var url = 'http://localhost:5000';
 
     describe('Create', function () {
+        before(function () {
+            MongoClient.connect('mongodb://localhost:27017/test').then(function (db) {
+                db.collection('users').removeMany({'username': user_1.username});
+            });
+        });
         it('should pass', function (done) {
             should(2).be.equal(2);
             done();
@@ -113,12 +114,54 @@ describe('User', function () {
                         throw err;
                     }
                     var keys = res.body.invalid_keys;
-                    // should(res).have.property('status', HttpStatus.BAD_REQUEST);
-                    // should(keys.location).containEql('invalid or missing');
-                    // should(keys.phone).containEql('invalid or missing');
-                    // should(keys.email).containEql('invalid or missing');
+                    should(keys.email).containEql('duplicate user');
+                    should(keys.username).containEql('duplicate user');
+                    should(keys.PPS).containEql('duplicate user');
                     done();
                 });
         });
     });
+    describe('Search', function () {
+        it('should return user matching email', function (done) {
+            request(url)
+                .get('/api/getUserByEmail')
+                .query({'email': user_1.email})
+                .end(function (err, res) {
+                    if (err) throw err;
+                    var usr = res.body.user;
+                    should(usr.email).be.equal(user_1.email);
+                    should(usr.username).be.equal(user_1.username);
+                    should(usr.PPS).be.equal(user_1.PPS);
+                    done();
+                });
+        });
+        it('should return user matching username', function (done) {
+            request(url)
+                .get('/api/getUserByUsername')
+                .query({'username': user_1.username})
+                .end(function (err, res) {
+                    if (err) throw err;
+                    var usr = res.body.user;
+                    should(usr.email).be.equal(user_1.email);
+                    should(usr.username).be.equal(user_1.username);
+                    should(usr.PPS).be.equal(user_1.PPS);
+                    done();
+                });
+        });
+        it('should return user matching pps no.', function (done) {
+            request(url)
+                .get('/api/getUserByPps')
+                .query({'pps': user_1.PPS})
+                .end(function (err, res) {
+                    if (err) throw err;
+                    var usr = res.body.user;
+                    should(usr.email).be.equal(user_1.email);
+                    should(usr.username).be.equal(user_1.username);
+                    should(usr.PPS).be.equal(user_1.PPS);
+                    done();
+                });
+        });
+    });
+
+
 });
