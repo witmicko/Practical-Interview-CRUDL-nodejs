@@ -55,10 +55,10 @@
         }
       }
     },
-    "/api/users/email": {
+    "/api/users/find": {
       "get": {
         "tags": ["Users"],
-        "description": "Returns user matching email",
+        "description": "Returns user matching query. Email, username and pps no. are supported",
         "operationId": "for the URL",
         "produces": [
           "application/json"
@@ -68,69 +68,23 @@
             "name": "email",
             "in": "query",
             "description": "user's email",
-            "required": true,
+            "required": false,
             "type": "string",
             "default": "brendan.doyle@example.com"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "User",
-            "schema": {
-              "$ref": "#/definitions/user"
-            }
           },
-          "404":{
-            "description": "User not found"
-          }
-        }
-      }
-    },
-    "/api/users/username": {
-      "get": {
-        "tags": ["Users"],
-        "description": "Returns user matching the username",
-        "operationId": "for the URL",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
           {
             "name": "username",
             "in": "query",
             "description": "user's username",
-            "required": true,
+            "required": false,
             "type": "string",
             "default": "orangebutterfly881"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "User",
-            "schema": {
-              "$ref": "#/definitions/user"
-            }
           },
-          "404":{
-            "description": "User not found"
-          }
-        }
-      }
-    },
-    "/api/users/pps": {
-      "get": {
-        "tags": ["Users"],
-        "description": "Returns user matching pps number",
-        "operationId": "for the URL",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
           {
             "name": "pps",
             "in": "query",
             "description": "user's pps no.",
-            "required": true,
+            "required": false,
             "type": "string",
             "default": "6443903T"
           }
@@ -196,22 +150,21 @@
         }
       }
     },
-    "/api/deleteUserByEmail": {
+    "/api/users/{id}": {
       "delete": {
         "tags": ["Users"],
-        "description": "Deletes user matching email",
+        "description": "Deletes user matching ID",
         "operationId": "for the URL",
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "parameters":[
           {
-            "name": "email",
-            "in": "body",
-            "description": "user's email",
+            "name": "id",
+            "in": "path",
+            "description": "ID to find",
             "required": true,
-            "type": "string",
-            "default": "brendan.doyle@example.com"
+            "type": "integer"
           }
         ],
         "responses": {
@@ -227,84 +180,21 @@
         }
       }
     },
-    "/api/deleteUserByUsername": {
-      "delete": {
-        "tags": ["Users"],
-        "description": "Deletes user matching the username",
-        "operationId": "for the URL",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "username",
-            "in": "body",
-            "description": "user's username",
-            "required": true,
-            "type": "string",
-            "default": "orangebutterfly881"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Remove result",
-            "schema": {
-              "$ref": "#/definitions/result"
-            }
-          },
-          "404":{
-            "description": "User not found"
-          }
-        }
-      }
-    },
-    "/api/deleteUserByPps": {
-      "delete": {
-        "tags": ["Users"],
-        "description": "Deletes user matching pps number",
-        "operationId": "for the URL",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "username",
-            "in": "body",
-            "description": "user's pps no.",
-            "required": true,
-            "type": "string",
-            "default": "6443903T"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Remove result",
-            "schema": {
-              "$ref": "#/definitions/result"
-            }
-          },
-          "404":{
-            "description": "User not found"
-          }
-        }
-      }
-    },
-    "/api/updateUserByEmail": {
-      "get": {
+    "/api/users/{id}": {
+      "put": {
         "tags": ["Users"],
         "description": "updates user and returns operation result",
         "operationId": "for the URL",
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "parameters":[
           {
-            "name": "email",
-            "in": "body",
-            "description": "user's email",
+            "name": "id",
+            "in": "path",
+            "description": "ID to find",
             "required": true,
-            "type": "string",
-            "default": "brendan.doyle@example.com"
+            "type": "integer"
           },
           {
             "name": "Updated user",
