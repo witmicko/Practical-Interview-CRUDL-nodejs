@@ -48,7 +48,6 @@ console.log('swagger ui running on ' + applicationUrl);
 swagger.configure(applicationUrl, '1.0.0');
 
 
-
 routes.init();
 
 app.get('/',                routes.index);
@@ -65,9 +64,10 @@ app.get('/api/reset_data',  routes.populate);
 
 
 
-http.createServer(app).listen(port, function () {
+var server = http.createServer(app).listen(port, function () {
     console.log("Express server listening on port " + port);
 });
 
 // expose app
 exports = module.exports = app;
+module.exports = server;

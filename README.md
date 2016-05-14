@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/witmicko/Practical-Interview-CRUDL-nodejs.svg?token=BNqwsHbtzG5ZjVLVo7mr&branch=master)](https://travis-ci.com/witmicko/Practical-Interview-CRUDL-nodejs)
 # Practical-Interview-CRUDL-nodejs
 CRUDL RESTfull API built on node, express, mongo.
 

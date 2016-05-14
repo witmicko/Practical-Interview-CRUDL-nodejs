@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - 4.4.4
+
+services:
+  - mongodb
+
+before_script:
+  - sleep 5
+  - mongo mydb_test --eval 'db.getCollection('users').insert({'username': 'gimme', 'password': 'token'});'
+
+deploy:
+  provider: heroku
+  api_key:
+   secure: "iKOqY8hPKayu4FFaJPGsKV3i929tnpXVqnutrn5k003+1VDaAtwq2JxC4MPsR7av0xUlmxLqpStdhb6NvtmUfmjKULXQeNCtYZ4MIHca4gw0CKr4HA1hs1jzXP2JfJVSvp/4emqXaVCck0lEkYc6uKJw/94aUSyxoFJNXErtYikDcaLCtzGeAnn4Wp38d6sfLVfyPXzRxR8wSVUyRFArHV1zeZ7jRihQTVgS4RhB35F5fVQxqzQouNgIA+zBQMA+sQxFoNcEe5c3/1nJxR2NWyFcDG/E5tVZYCeQinzKNjwLrn0xZwOiu4LW8y3hqDCHZ20FFd95LNetnglX3XGGR3cEPsciG5XtnyFo643yFUROSxdRl9tvV8a/h0ubmGTuueEmwJGh8BfFC6s/EDjCiXDAl67q5xa0a9R6SdVoOqhRJnuoWNpOrhlNfuJf26RtwhrKaUN/5qqf4NXnmQMKH0PRPiZyY2yqpkCVUMUfJKK4U+xC4PrsQKDaGycNK6DS6XHj3i4d4EJuW8dzrS9hYRgGKPUW89RSo46/9DlVBQuTziOa0qZISKZZFjJ+xn9rJhZnsR/Wxbp8fsRoqKLChQJ3R/JgnFtK1wFnkr4F5pNYmQDhZbnmKiEKovys4A8vOAqkzwJb9u+7EzGCLHqWLGiuQnV/GxUM53VetGWsUzI="
+  app: mo-practical-interview

@@ -36,6 +36,7 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-express": "^1.4.1",
     "grunt-parallel": "^0.4.1",
+    "mocha": "^2.4.5",
     "should": "^8.3.1",
     "supertest": "^1.2.0"
   },
