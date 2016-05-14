@@ -59,7 +59,7 @@ describe('User', function () {
         });
         it('should return 201 creating user', function (done) {
             request(url)
-                .post('/api/createUser')
+                .post('/api/users')
                 .send(user_1)
                 .end(function (err, res) {
                     if (err) throw err;
@@ -76,7 +76,7 @@ describe('User', function () {
             delete bad_user.PPS;
 
             request(url)
-                .post('/api/createUser')
+                .post('/api/users')
                 .send(bad_user)
                 .expect('Content-Type', /json/)
                 .expect(HttpStatus.BAD_REQUEST)
@@ -96,7 +96,7 @@ describe('User', function () {
         });
         it('should return BAD_REQUEST along with duplicate fields fields', function (done) {
             request(url)
-                .post('/api/createUser')
+                .post('/api/users')
                 .send(user_1)
                 .expect('Content-Type', /json/)
                 .end(function (err, res) {
@@ -105,7 +105,7 @@ describe('User', function () {
                     }
                 });
             request(url)
-                .post('/api/createUser')
+                .post('/api/users')
                 .send(user_1)
                 .expect('Content-Type', /json/)
                 .expect(HttpStatus.BAD_REQUEST)
@@ -124,7 +124,7 @@ describe('User', function () {
     describe('Search', function () {
         it('should return user matching email', function (done) {
             request(url)
-                .get('/api/getUserByEmail')
+                .get('/api/users/find')
                 .query({'email': user_1.email})
                 .end(function (err, res) {
                     if (err) throw err;
@@ -137,7 +137,7 @@ describe('User', function () {
         });
         it('should return user matching username', function (done) {
             request(url)
-                .get('/api/getUserByUsername')
+                .get('/api/users/find')
                 .query({'username': user_1.username})
                 .end(function (err, res) {
                     if (err) throw err;
@@ -150,7 +150,7 @@ describe('User', function () {
         });
         it('should return user matching pps no.', function (done) {
             request(url)
-                .get('/api/getUserByPps')
+                .get('/api/users/find')
                 .query({'pps': user_1.PPS})
                 .end(function (err, res) {
                     if (err) throw err;

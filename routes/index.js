@@ -21,18 +21,18 @@ exports.create_user = function (req, res) {
         valid = validator.validate_user(new_user),
         invalid_keys = {};
 
-    db.findByUsername(new_user.username).then(function (users) {
+    db.find_by_username(new_user.username).then(function (users) {
         if (users.length > 0) {
             invalid_keys.username = 'duplicate user';
         }
     }).then(function () {
-        return db.findByEmail(new_user.email).then(function (users) {
+        return db.find_by_email(new_user.email).then(function (users) {
             if (users.length > 0) {
                 invalid_keys.email = 'duplicate user';
             }
         });
     }).then(function () {
-        return db.findByPPS(new_user.PPS).then(function (users) {
+        return db.find_by_PPS(new_user.PPS).then(function (users) {
             if (users.length > 0) {
                 invalid_keys.PPS = 'duplicate user';
             }
@@ -44,7 +44,7 @@ exports.create_user = function (req, res) {
             });
             res.status(HttpStatus.BAD_REQUEST).json({'invalid_keys': invalid_keys});
         } else {
-            db.createUser(new_user).then(function (data) {
+            db.create_user(new_user).then(function (data) {
                 var id = {'id': data.ops[0].id};
                 res.status(HttpStatus.CREATED).json(id);
             });
@@ -52,12 +52,15 @@ exports.create_user = function (req, res) {
     });
 };
 
+/*
+    Simple find by: email, username, pps no. needs exact match to work
+ */
 exports.get_user_by = function (req, res) {
     var query = req.query,
         not_found = HttpStatus.NOT_FOUND,
         response = {'result': "User not found", 'query': query};
     if (query.email) {
-        db.findByEmail(query.email).then(function (user) {
+        db.find_by_email(query.email).then(function (user) {
             if (user.length > 0) {
                 res.status(HttpStatus.OK).json({'user': user[0]});
             } else {
@@ -65,7 +68,7 @@ exports.get_user_by = function (req, res) {
             }
         });
     } else if (query.username) {
-        db.findByUsername(query.username).then(function (user) {
+        db.find_by_username(query.username).then(function (user) {
             if (user.length > 0) {
                 res.status(HttpStatus.OK).json({'user': user[0]});
             } else {
@@ -73,7 +76,7 @@ exports.get_user_by = function (req, res) {
             }
         });
     } else if (query.pps) {
-        db.findByPPS(query.pps).then(function (user) {
+        db.find_by_PPS(query.pps).then(function (user) {
             if (user.length > 0) {
                 res.status(HttpStatus.OK).json({'user': user[0]});
             } else {
@@ -83,8 +86,27 @@ exports.get_user_by = function (req, res) {
     }
 };
 
+exports.get_all_users = function (req, res) {
+    db.get_all_users().then(function (users) {
+        res.status(HttpStatus.OK).json(users);
+    });
+};
+
+exports.get_user = function (req, res) {
+    db.get_user(req.params.id).then(function (arr) {
+        if (arr.length === 0) {
+            res.status(HttpStatus.NOT_FOUND).json({id: req.params.id + " Not found"});
+        } else if (arr.length > 1) {
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .json({id: req.params.id + " multiple users with the same id"});
+        } else {
+            res.status(HttpStatus.OK).json(arr[0]);
+        }
+    });
+};
+
 exports.populate = function (req, res) {
-    var result = db.resetData();
+    var result = db.reset_data();
     if (result.err) {
         res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(result);
     } else {
@@ -95,6 +117,6 @@ exports.populate = function (req, res) {
 exports.init = function () {
     db.connect().then(function (result) {
     }).then(function () {
-        db.resetData();
+        db.reset_data();
     });
 };

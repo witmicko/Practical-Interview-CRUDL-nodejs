@@ -166,6 +166,36 @@
         }
       }
     },
+    "/api/users/{id}": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Returns user with ID equal to parameter",
+        "operationId": "for the URL",
+        "produces": [
+          "application/json"
+        ],
+        "parameters":[
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID to find",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Users",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          },
+          "404":{
+            "description": "User not found"
+          }
+        }
+      }
+    },
     "/api/deleteUserByEmail": {
       "delete": {
         "tags": ["Users"],

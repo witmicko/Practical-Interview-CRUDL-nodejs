@@ -59,12 +59,12 @@ swagger.configure(applicationUrl, '1.0.0');
 
 
 routes.init();
-app.get ('/'                     , routes.index);
-app.post('/api/users'            , routes.create_user);
-app.get ('/api/users/email'      , routes.get_user_by);
-app.get ('/api/users/username'   , routes.get_user_by);
-app.get ('/api/users/pps'        , routes.get_user_by);
-app.get ('/api/resetData'        , routes.populate);
+app.get('/',                routes.index);
+app.post('/api/users',      routes.create_user);
+app.get('/api/users',       routes.get_all_users);
+app.get('/api/users/find', routes.get_user_by);
+app.get('/api/users/:id',   routes.get_user);
+app.get('/api/reset_data',  routes.populate);
 
 
 http.createServer(app).listen(port, function () {
