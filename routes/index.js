@@ -172,7 +172,7 @@ exports.authenticate = function (req, res) {
         if (user.length === 0 || user[0].password.localeCompare(pwd) !== 0) {
             res.status(HttpStatus.FORBIDDEN).json({err: "invalid password or username"});
         } else {
-            var token = jwt.sign(user[0], config.secret, {expiresIn: '30d'});
+            var token = jwt.sign(user[0], config.secret, {expiresIn: '1d'});
             res.status(HttpStatus.OK).json({token: token});
         }
     });
