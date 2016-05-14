@@ -52,7 +52,38 @@ exports.create_user = function (req, res) {
     });
 };
 
+exports.get_user_by = function (req, res) {
+    var query = req.query,
+        not_found = HttpStatus.NOT_FOUND,
+        response = {'result': "User not found", 'query': query};
 
+    if (query.email) {
+        console.log('email');
+        db.findByEmail(query.email).then(function (user) {
+            if (user.length > 0) {
+                res.status(HttpStatus.OK).json(user[0]);
+            } else {
+                res.status(not_found).json(response);
+            }
+        });
+    } else if (query.username) {
+        db.findByUsername(query.username).then(function (user) {
+            if (user.length > 0) {
+                res.status(HttpStatus.OK).json(user[0]);
+            } else {
+                res.status(not_found).json(response);
+            }
+        });
+    } else if (query.pps) {
+        db.findByPPS(query.pps).then(function (user) {
+            if (user.length > 0) {
+                res.status(HttpStatus.OK).json(user[0]);
+            } else {
+                res.status(not_found).json(response);
+            }
+        });
+    }
+};
 
 exports.populate = function (req, res) {
     var result = db.resetData();

@@ -66,7 +66,7 @@
         "parameters": [
           {
             "name": "email",
-            "in": "body",
+            "in": "query",
             "description": "user's email",
             "required": true,
             "type": "string",
@@ -97,7 +97,7 @@
         "parameters": [
           {
             "name": "username",
-            "in": "body",
+            "in": "query",
             "description": "user's username",
             "required": true,
             "type": "string",
@@ -127,8 +127,8 @@
         ],
         "parameters": [
           {
-            "name": "username",
-            "in": "body",
+            "name": "pps",
+            "in": "query",
             "description": "user's pps no.",
             "required": true,
             "type": "string",

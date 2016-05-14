@@ -59,9 +59,12 @@ swagger.configure(applicationUrl, '1.0.0');
 
 
 routes.init();
-app.get('/',            routes.index);
-app.post('/api/createUser',  routes.create_user);
-app.get('/api/resetData',   routes.populate);
+app.get ('/'                     , routes.index);
+app.post('/api/createUser'       , routes.create_user);
+app.get ('/api/getUserByEmail'   , routes.get_user_by);
+app.get ('/api/getUserByUsername', routes.get_user_by);
+app.get ('/api/getUserByPps'     , routes.get_user_by);
+app.get ('/api/resetData'        , routes.populate);
 
 
 http.createServer(app).listen(port, function () {
