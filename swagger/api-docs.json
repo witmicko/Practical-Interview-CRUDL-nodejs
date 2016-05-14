@@ -593,10 +593,10 @@
     },
     "response_create_user_201": {
         "properties": {
-          "objectID": {
+          "id": {
             "required":true,
             "type": "string",
-            "example": "5736d2cdd59863102f91994d"
+            "example": "52"
           }
       }
     },

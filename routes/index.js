@@ -45,8 +45,8 @@ exports.create_user = function (req, res) {
             res.status(HttpStatus.BAD_REQUEST).json({'invalid_keys': invalid_keys});
         } else {
             db.createUser(new_user).then(function (data) {
-                var objectID = {'objectID': data.ops[0]._id};
-                res.status(HttpStatus.CREATED).json(objectID);
+                var id = {'id': data.ops[0].id};
+                res.status(HttpStatus.CREATED).json(id);
             });
         }
     });
