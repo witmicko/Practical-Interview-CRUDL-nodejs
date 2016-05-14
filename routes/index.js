@@ -82,6 +82,14 @@ exports.update_user = function (req, res) {
         });
     });
 };
+
+exports.delete_user = function(req, res){
+    db.delete_user(req.params.id).then(function (r) {
+        return res.status(HttpStatus.OK).json(r.result);
+    }).catch(function (err) {
+        return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({err: err.message});
+    });
+};
 /*
     Simple find by: email, username, pps no. needs exact match to work
  */

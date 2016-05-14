@@ -55,6 +55,120 @@
         }
       }
     },
+    "/api/users": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Returns entire collection of users",
+        "operationId": "for the URL",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of users",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{id}": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Returns user with ID equal to parameter",
+        "operationId": "for the URL",
+        "produces": [
+          "application/json"
+        ],
+        "parameters":[
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID to find",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Users",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          },
+          "404":{
+            "description": "User not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Users"],
+        "description": "Deletes user matching ID",
+        "operationId": "for the URL",
+        "produces": [
+          "application/json"
+        ],
+        "parameters":[
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID to find",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Remove result",
+            "schema": {
+              "$ref": "#/definitions/result"
+            }
+          },
+          "404":{
+            "description": "User not found"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Users"],
+        "description": "updates user and returns operation result",
+        "operationId": "for the URL",
+        "produces": [
+          "application/json"
+        ],
+        "parameters":[
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID to find",
+            "required": true,
+            "type": "integer",
+            "default": 100
+          },
+          {
+            "name": "Updated user",
+            "in": "body",
+            "description": "User to add to the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "schema": {
+              "$ref": "#/definitions/result"
+            }
+          },
+          "404":{
+            "description": "User not found"
+          }
+        }
+      }
+    },
     "/api/users/find": {
       "get": {
         "tags": ["Users"],
@@ -102,204 +216,6 @@
         }
       }
     },
-    "/api/users": {
-      "get": {
-        "tags": ["Users"],
-        "description": "Returns entire collection of users",
-        "operationId": "for the URL",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "An array of users",
-            "schema": {
-              "$ref": "#/definitions/user"
-            }
-          }
-        }
-      }
-    },
-    "/api/users/{id}": {
-      "get": {
-        "tags": ["Users"],
-        "description": "Returns user with ID equal to parameter",
-        "operationId": "for the URL",
-        "produces": [
-          "application/json"
-        ],
-        "parameters":[
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID to find",
-            "required": true,
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Users",
-            "schema": {
-              "$ref": "#/definitions/user"
-            }
-          },
-          "404":{
-            "description": "User not found"
-          }
-        }
-      }
-    },
-    "/api/users/{id}": {
-      "delete": {
-        "tags": ["Users"],
-        "description": "Deletes user matching ID",
-        "operationId": "for the URL",
-        "produces": [
-          "application/json"
-        ],
-        "parameters":[
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID to find",
-            "required": true,
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Remove result",
-            "schema": {
-              "$ref": "#/definitions/result"
-            }
-          },
-          "404":{
-            "description": "User not found"
-          }
-        }
-      }
-    },
-    "/api/users/{id}": {
-      "put": {
-        "tags": ["Users"],
-        "description": "updates user and returns operation result",
-        "operationId": "for the URL",
-        "produces": [
-          "application/json"
-        ],
-        "parameters":[
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID to find",
-            "required": true,
-            "type": "integer",
-            "default": 100
-          },
-          {
-            "name": "Updated user",
-            "in": "body",
-            "description": "User to add to the database",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/user"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Update result",
-            "schema": {
-              "$ref": "#/definitions/result"
-            }
-          },
-          "404":{
-            "description": "User not found"
-          }
-        }
-      }
-    },
-    "/api/updateUserByUsername": {
-      "get": {
-        "tags": ["Users"],
-        "description": "updates user and returns operation result",
-        "operationId": "for the URL",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "username",
-            "in": "body",
-            "description": "user's username",
-            "required": true,
-            "type": "string",
-            "default": "orangebutterfly881"
-          },
-          {
-            "name": "Updated user",
-            "in": "body",
-            "description": "User to add to the database",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/user"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Update result",
-            "schema": {
-              "$ref": "#/definitions/result"
-            }
-          },
-          "404":{
-            "description": "User not found"
-          }
-        }
-      }
-    },
-    "/api/updateUserByPps": {
-      "get": {
-        "tags": ["Users"],
-        "description": "updates user and returns operation result",
-        "operationId": "for the URL",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "username",
-            "in": "body",
-            "description": "user's pps no.",
-            "required": true,
-            "type": "string",
-            "default": "6443903T"
-          },
-          {
-            "name": "Updated user",
-            "in": "body",
-            "description": "User to add to the database",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/user"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Update result",
-            "schema": {
-              "$ref": "#/definitions/result"
-            }
-          },
-          "404":{
-            "description": "User not found"
-          }
-        }
-      }
-    },
     "/api/resetData": {
       "get": {
         "tags": ["Users"],
@@ -326,59 +242,7 @@
           }
         }
       }
-    },
-    "/path/to/method/{someVariable}": {
-        "delete":{
-          "tags":["Users"],
-          "description":"Deletes a something",
-          "operationId":"delete",
-          "produces": [
-            "application/json"
-          ],
-          "parameters":[
-              {
-                "name": "someVariable",
-                "in": "path",
-                "description": "ID to delete",
-                "required": true,
-                "type": "string"
-              }
-            ],
-          "responses": {
-            "200": {
-              "description": "delete response",
-              "schema":{
-                "$ref":"#/definitions/deleteRes"
-              }
-            }
-          }
-        },
-      "get":{
-          "tags": [ "Users"],
-          "description": "Returns the status of something",
-          "operationId": "findById",
-          "produces": [
-            "application/json"
-          ],
-          "parameters": [
-              {
-                "name": "ID",
-                "in": "path",
-                "description": "ID to fetch",
-                "required": true,
-                "type": "string"
-              }
-            ],
-        "responses": {
-            "200": {
-              "description": "response",
-              "schema": {
-                "$ref": "#/definitions/response1"
-              }
-            }
-          }
-        }
-      }
+    }
   },
   "definitions": {
     "user":{
