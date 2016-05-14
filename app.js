@@ -60,10 +60,10 @@ swagger.configure(applicationUrl, '1.0.0');
 
 routes.init();
 app.get ('/'                     , routes.index);
-app.post('/api/createUser'       , routes.create_user);
-app.get ('/api/getUserByEmail'   , routes.get_user_by);
-app.get ('/api/getUserByUsername', routes.get_user_by);
-app.get ('/api/getUserByPps'     , routes.get_user_by);
+app.post('/api/users'            , routes.create_user);
+app.get ('/api/users/email'      , routes.get_user_by);
+app.get ('/api/users/username'   , routes.get_user_by);
+app.get ('/api/users/pps'        , routes.get_user_by);
 app.get ('/api/resetData'        , routes.populate);
 
 

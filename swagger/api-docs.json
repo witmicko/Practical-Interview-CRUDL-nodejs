@@ -20,7 +20,7 @@
     "application/json"
   ],
   "paths": {
-    "/api/createUser": {
+    "/api/users": {
       "post": {
         "tags": ["Users"],
         "description": "Creates new user",
@@ -55,7 +55,7 @@
         }
       }
     },
-    "/api/getUserByEmail": {
+    "/api/users/email": {
       "get": {
         "tags": ["Users"],
         "description": "Returns user matching email",
@@ -86,7 +86,7 @@
         }
       }
     },
-    "/api/getUserByUsername": {
+    "/api/users/username": {
       "get": {
         "tags": ["Users"],
         "description": "Returns user matching the username",
@@ -117,7 +117,7 @@
         }
       }
     },
-    "/api/getUserByPps": {
+    "/api/users/pps": {
       "get": {
         "tags": ["Users"],
         "description": "Returns user matching pps number",
@@ -148,7 +148,7 @@
         }
       }
     },
-    "/api/getAllUsers": {
+    "/api/users": {
       "get": {
         "tags": ["Users"],
         "description": "Returns entire collection of users",
