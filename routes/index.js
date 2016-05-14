@@ -16,8 +16,8 @@ exports.createUser = function (req, res) {
 
     if (true === valid) {
         db.createUser(user).then(function (data) {
-            var jj = {'result': data.result, 'user': data.ops[0]};
-            res.status(HttpStatus.CREATED).json(jj);
+            var objectID = {'objectID': data.ops[0]._id};
+            res.status(HttpStatus.CREATED).json(objectID);
         });
     } else {
         var invalid_keys = [];
@@ -29,8 +29,12 @@ exports.createUser = function (req, res) {
 };
 
 exports.populate = function (req, res) {
-    var obj = db.resetData();
-    res.status(HttpStatus.OK).json(obj);
+    var result = db.resetData();
+    if (result.err) {
+        res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(result);
+    } else {
+        res.status(HttpStatus.OK).json(result);
+    }
 };
 
 exports.init = function () {

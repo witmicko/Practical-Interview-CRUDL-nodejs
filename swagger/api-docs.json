@@ -1,0 +1,314 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Practical interview",
+    "description": "Swagger docs for practical interview",
+    "termsOfService": "http://swagger.io/terms/"
+  },
+  "basePath": "/",
+  "tags" : [
+    {"name": "Users",
+    "description": "CRUDL API for users"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/createUser": {
+       "post": {
+          "tags": ["Users"],
+          "description": "Creates new user",
+          "operationId": "for the URL",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+              {
+                "name": "User",
+                "in": "body",
+                "description": "User to add to the database",
+                "required": true,
+              "schema": {
+                "$ref": "#/definitions/user"
+                }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "create response",
+              "schema": {
+                 "$ref": "#/definitions/response_create_user_201"
+              }
+            },
+            "400":{
+              "description": "array of missing or invalid user data fields",
+              "schema": {
+                "$ref": "#/definitions/response_create_user_400"
+              }
+            }
+          }
+        }
+    },
+    "/api/resetData": {
+      "get": {
+        "tags": ["Users"],
+        "description": "deletes all data and repopulates it from the json gist file",
+        "operationId": "for the URL",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "reset data response",
+            "schema": {
+              "$ref": "#/definitions/reset_data_response_200"
+            }
+          },
+          "500": {
+            "description": "reset data response error",
+            "schema": {
+              "$ref": "#/definitions/reset_data_response_500"
+            }
+          }
+        }
+      }
+    },
+    "/path/to/method/{someVariable}": {
+        "delete":{
+          "tags":["Users"],
+          "description":"Deletes a something",
+          "operationId":"delete",
+          "produces": [
+            "application/json"
+          ],
+          "parameters":[
+              {
+                "name": "someVariable",
+                "in": "path",
+                "description": "ID to delete",
+                "required": true,
+                "type": "string"
+              }
+            ],
+          "responses": {
+            "200": {
+              "description": "delete response",
+              "schema":{
+                "$ref":"#/definitions/deleteRes"
+              }
+            }
+          }
+        },
+      "get":{
+          "tags": [ "Users"],
+          "description": "Returns the status of something",
+          "operationId": "findById",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+              {
+                "name": "ID",
+                "in": "path",
+                "description": "ID to fetch",
+                "required": true,
+                "type": "string"
+              }
+            ],
+        "responses": {
+            "200": {
+              "description": "response",
+              "schema": {
+                "$ref": "#/definitions/response1"
+              }
+            }
+          }
+        }
+      }
+  },
+  "definitions": {
+    "user":{
+      "properties":{
+        "gender":{
+          "required":true,
+          "type": "string",
+          "example": "male"
+        },
+        "name": {
+          "properties": {
+            "title": {
+              "required":true,
+              "type": "string",
+              "example": "mr"
+            },
+            "first": {
+              "required":true,
+              "type": "string",
+              "example": "stanley"
+            },
+            "last": {
+              "required":true,
+              "type": "string",
+              "example": "beck"
+            }
+          }
+        },
+        "location": {
+          "properties": {
+            "street": {
+              "required":true,
+              "type": "string",
+              "example": "3226 novara avenue"
+            },
+            "city": {
+              "required":true,
+              "type": "string",
+              "example": "Athenry"
+            },
+            "state": {
+              "required":true,
+              "type": "string",
+              "example": "nebraska"
+            },
+            "zip": {
+              "required":true,
+              "type": "long",
+              "example": 73994
+            }
+          }
+        },
+        "email":{
+          "required":true,
+          "type": "email",
+          "example": "stanley.beck@example.com"
+        },
+        "username":{
+          "required":true,
+          "type": "string",
+          "example": "lazyduck588"
+        },
+        "password":{
+          "required":true,
+          "type": "string",
+          "example": "buddha"
+        },
+        "salt":{
+          "required":true,
+          "type": "string",
+          "example": "vjWR3Yc1"
+        },
+        "md5":{
+          "required":true,
+          "type": "string",
+          "example": "7cbcfc6659a4334aef4ebeae6406d0b3"
+        },
+        "sha1":{
+          "required":true,
+          "type": "string",
+          "example": "6eb782953f39720b66abb1a70932372e422bc2d0"
+        },
+        "sha256":{
+          "required":true,
+          "type": "string",
+          "example": "e4d3e58a4b3b28c20ff8c3ba8af5ac0720ad352a32c8f5f348d00c02fa42e1ca"
+        },
+        "registered":{
+          "required":true,
+          "type": "epoch",
+          "example": 1193223661
+        },
+        "dob":{
+          "required":true,
+          "type": "epoch",
+          "example": "431832704"
+        },
+        "phone":{
+          "required":true,
+          "type": "string",
+          "example": "021-768-8431"
+        },
+        "cell":{
+          "required":true,
+          "type": "string",
+          "example": "081-759-2850"
+        },
+        "PPS":{
+          "required":true,
+          "type": "string",
+          "example": "7466773T"
+        },
+        "picture": {
+          "properties": {
+            "large": {
+              "required":true,
+              "type": "uri",
+              "example": "https://randomuser.me/api/portraits/men/63.jpg"
+            },
+            "medium": {
+              "required":true,
+              "type": "uri",
+              "example": "https://randomuser.me/api/portraits/med/men/63.jpg"
+            },
+            "thumbnail": {
+              "required":true,
+              "type": "uri",
+              "example": "https://randomuser.me/api/portraits/thumb/men/63.jpg"
+            }
+          }
+        }
+      }
+    },
+    "response_create_user_201": {
+        "properties": {
+          "objectID": {
+            "required":true,
+            "type": "string",
+            "example": "5736d2cdd59863102f91994d"
+          }
+      }
+    },
+    "response_create_user_400": {
+      "properties": {
+        "invalid_keys": {
+          "required":false,
+          "type": "string",
+          "example": {"email":"missing","username": "duplicate"}
+        }
+      }
+    },
+    "reset_data_response_200": {
+      "properties": {
+        "reset": {
+          "required":true,
+          "type": "boolean",
+          "example": true
+        }
+      }
+    },
+    "reset_data_response_500": {
+      "properties": {
+        "reset": {
+          "required":true,
+          "type": "boolean",
+          "example": true
+        },
+        "err":{
+          "required":true,
+          "type": "string",
+          "example": "Cannot read property 'collection' of undefined"
+        }
+      }
+    }
+  }
+}

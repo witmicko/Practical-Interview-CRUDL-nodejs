@@ -4,9 +4,13 @@ var express = require('express'),
     http    = require('http'),
     fs      = require('fs'),
     bodyParser = require('body-parser'),
-    morgan  = require('morgan');
+    morgan  = require('morgan'),
+    argv = require('minimist')(process.argv.slice(2)),
+    swagger = require("swagger-node-express");
 
-var app = express();
+var app     = express(),
+    subpath = express();
+
 
 // Configuration
 // try {
@@ -21,13 +25,38 @@ var app = express();
 var port = process.env.PORT || 5000;
 app.set('port', port);
 app.use(morgan('dev'));
+app.use(bodyParser());
 app.use(bodyParser.json());
 
+// swagger setup
+app.use('/v1', subpath);
+swagger.setAppHandler(subpath);
+app.use(express.static('swagger'));
+swagger.setApiInfo({
+    title: "Practical Interview API",
+    description: "Production quality API to do CRUDL on users dataset",
+    termsOfServiceUrl: "",
+    contact: "mjogrodniczak@gmail.com",
+    license: "",
+    licenseUrl: ""
+});
+app.get('/', function (req, res) {
+    res.sendFile(__dirname + '/swagger/index.html');
+});
 
-// app.configure('development', function(){
-// 	app.use(express.errorHandler());
-// 	app.locals.inspect = require('util').inspect;
-// });
+swagger.configureSwaggerPaths('', 'api-docs', '');
+
+// Configure the API domain
+var domain = 'localhost';
+if (argv.domain !== undefined) {
+    domain = argv.domain;
+} else {
+    console.log('No --domain=xxx specified, taking default hostname "localhost".')
+}
+var applicationUrl = 'http://' + domain + ':' + port;
+console.log('snapJob API running on ' + applicationUrl);
+swagger.configure(applicationUrl, '1.0.0');
+
 
 routes.init();
 app.get('/',            routes.index);
