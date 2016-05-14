@@ -172,8 +172,26 @@ exports.authenticate = function (req, res) {
         if (user.length === 0 || user[0].password.localeCompare(pwd) !== 0) {
             res.status(HttpStatus.FORBIDDEN).json({err: "invalid password or username"});
         } else {
-            var token = jwt.sign(user[0], config.secret, {expiresIn: '1h'});
+            var token = jwt.sign(user[0], config.secret, {expiresIn: '30d'});
             res.status(HttpStatus.OK).json({token: token});
         }
     });
+};
+
+exports.jwt_middleware = function (req, res, next) {
+    var token = req.body.token ||
+        req.query.token ||
+        req.headers['x-access-token'];
+    if (token) {
+        jwt.verify(token, config.secret, function (err, decoded) {
+            if (err) {
+                res.status(HttpStatus.FORBIDDEN).json({err: "not authenticated"});
+            } else {
+                req.decoded  = decoded;
+                next();
+            }
+        });
+    } else {
+        res.status(HttpStatus.FORBIDDEN).json({err: "no token"});
+    }
 };

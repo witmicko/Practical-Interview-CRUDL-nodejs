@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "Practical interview",
-    "description": "Swagger docs for practical interview",
+    "description": "Swagger docs for practical interview, default JWT token has been set in x-access-token and is valid for 30 days (14.05.16)",
     "termsOfService": "http://swagger.io/terms/"
   },
   "basePath": "/",
@@ -29,6 +29,14 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "JWT token",
+            "required": true,
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1NzM3OTVlMTg3MzljYjRjMmQwMjYxMzAiLCJnZW5kZXIiOiJtYWxlIiwibmFtZSI6eyJ0aXRsZSI6Im1yIiwiZmlyc3QiOiJzdGFubGV5IiwibGFzdCI6ImJlY2sifSwibG9jYXRpb24iOnsic3RyZWV0IjoiMzIyNiBub3ZhcmEgYXZlbnVlIiwiY2l0eSI6IkF0aGVucnkiLCJzdGF0ZSI6Im5lYnJhc2thIiwiemlwIjo3Mzk5NH0sImVtYWlsIjoic3RhbmxleS5iZWNrQGV4YW1wbGUuY29tIiwidXNlcm5hbWUiOiJsYXp5ZHVjazU4OCIsInBhc3N3b3JkIjoiYnVkZGhhIiwic2FsdCI6InZqV1IzWWMxIiwibWQ1IjoiN2NiY2ZjNjY1OWE0MzM0YWVmNGViZWFlNjQwNmQwYjMiLCJzaGExIjoiNmViNzgyOTUzZjM5NzIwYjY2YWJiMWE3MDkzMjM3MmU0MjJiYzJkMCIsInNoYTI1NiI6ImU0ZDNlNThhNGIzYjI4YzIwZmY4YzNiYThhZjVhYzA3MjBhZDM1MmEzMmM4ZjVmMzQ4ZDAwYzAyZmE0MmUxY2EiLCJyZWdpc3RlcmVkIjoxMTkzMjIzNjYxLCJkb2IiOjQzMTgzMjcwNCwicGhvbmUiOiIwMjEtNzY4LTg0MzEiLCJjZWxsIjoiMDgxLTc1OS0yODUwIiwiUFBTIjoiNzQ2Njc3M1QiLCJwaWN0dXJlIjp7ImxhcmdlIjoiaHR0cHM6Ly9yYW5kb211c2VyLm1lL2FwaS9wb3J0cmFpdHMvbWVuLzYzLmpwZyIsIm1lZGl1bSI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lZC9tZW4vNjMuanBnIiwidGh1bWJuYWlsIjoiaHR0cHM6Ly9yYW5kb211c2VyLm1lL2FwaS9wb3J0cmFpdHMvdGh1bWIvbWVuLzYzLmpwZyJ9LCJpZCI6MTAwLCJpYXQiOjE0NjMyNjA2NDYsImV4cCI6MTQ2NTg1MjY0Nn0.BLaPgmwfB8SiUoGuoT1oHaKbDLNFriG6ZO8Kl29E_pg"
+          },
           {
             "name": "User",
             "in": "body",
@@ -61,6 +69,16 @@
         "produces": [
           "application/json"
         ],
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "JWT token",
+            "required": true,
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1NzM3OTVlMTg3MzljYjRjMmQwMjYxMzAiLCJnZW5kZXIiOiJtYWxlIiwibmFtZSI6eyJ0aXRsZSI6Im1yIiwiZmlyc3QiOiJzdGFubGV5IiwibGFzdCI6ImJlY2sifSwibG9jYXRpb24iOnsic3RyZWV0IjoiMzIyNiBub3ZhcmEgYXZlbnVlIiwiY2l0eSI6IkF0aGVucnkiLCJzdGF0ZSI6Im5lYnJhc2thIiwiemlwIjo3Mzk5NH0sImVtYWlsIjoic3RhbmxleS5iZWNrQGV4YW1wbGUuY29tIiwidXNlcm5hbWUiOiJsYXp5ZHVjazU4OCIsInBhc3N3b3JkIjoiYnVkZGhhIiwic2FsdCI6InZqV1IzWWMxIiwibWQ1IjoiN2NiY2ZjNjY1OWE0MzM0YWVmNGViZWFlNjQwNmQwYjMiLCJzaGExIjoiNmViNzgyOTUzZjM5NzIwYjY2YWJiMWE3MDkzMjM3MmU0MjJiYzJkMCIsInNoYTI1NiI6ImU0ZDNlNThhNGIzYjI4YzIwZmY4YzNiYThhZjVhYzA3MjBhZDM1MmEzMmM4ZjVmMzQ4ZDAwYzAyZmE0MmUxY2EiLCJyZWdpc3RlcmVkIjoxMTkzMjIzNjYxLCJkb2IiOjQzMTgzMjcwNCwicGhvbmUiOiIwMjEtNzY4LTg0MzEiLCJjZWxsIjoiMDgxLTc1OS0yODUwIiwiUFBTIjoiNzQ2Njc3M1QiLCJwaWN0dXJlIjp7ImxhcmdlIjoiaHR0cHM6Ly9yYW5kb211c2VyLm1lL2FwaS9wb3J0cmFpdHMvbWVuLzYzLmpwZyIsIm1lZGl1bSI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lZC9tZW4vNjMuanBnIiwidGh1bWJuYWlsIjoiaHR0cHM6Ly9yYW5kb211c2VyLm1lL2FwaS9wb3J0cmFpdHMvdGh1bWIvbWVuLzYzLmpwZyJ9LCJpZCI6MTAwLCJpYXQiOjE0NjMyNjA2NDYsImV4cCI6MTQ2NTg1MjY0Nn0.BLaPgmwfB8SiUoGuoT1oHaKbDLNFriG6ZO8Kl29E_pg"
+          }
+        ],
         "responses": {
           "200": {
             "description": "An array of users",
@@ -86,6 +104,14 @@
             "description": "ID to find",
             "required": true,
             "type": "integer"
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "JWT token",
+            "required": true,
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1NzM3OTVlMTg3MzljYjRjMmQwMjYxMzAiLCJnZW5kZXIiOiJtYWxlIiwibmFtZSI6eyJ0aXRsZSI6Im1yIiwiZmlyc3QiOiJzdGFubGV5IiwibGFzdCI6ImJlY2sifSwibG9jYXRpb24iOnsic3RyZWV0IjoiMzIyNiBub3ZhcmEgYXZlbnVlIiwiY2l0eSI6IkF0aGVucnkiLCJzdGF0ZSI6Im5lYnJhc2thIiwiemlwIjo3Mzk5NH0sImVtYWlsIjoic3RhbmxleS5iZWNrQGV4YW1wbGUuY29tIiwidXNlcm5hbWUiOiJsYXp5ZHVjazU4OCIsInBhc3N3b3JkIjoiYnVkZGhhIiwic2FsdCI6InZqV1IzWWMxIiwibWQ1IjoiN2NiY2ZjNjY1OWE0MzM0YWVmNGViZWFlNjQwNmQwYjMiLCJzaGExIjoiNmViNzgyOTUzZjM5NzIwYjY2YWJiMWE3MDkzMjM3MmU0MjJiYzJkMCIsInNoYTI1NiI6ImU0ZDNlNThhNGIzYjI4YzIwZmY4YzNiYThhZjVhYzA3MjBhZDM1MmEzMmM4ZjVmMzQ4ZDAwYzAyZmE0MmUxY2EiLCJyZWdpc3RlcmVkIjoxMTkzMjIzNjYxLCJkb2IiOjQzMTgzMjcwNCwicGhvbmUiOiIwMjEtNzY4LTg0MzEiLCJjZWxsIjoiMDgxLTc1OS0yODUwIiwiUFBTIjoiNzQ2Njc3M1QiLCJwaWN0dXJlIjp7ImxhcmdlIjoiaHR0cHM6Ly9yYW5kb211c2VyLm1lL2FwaS9wb3J0cmFpdHMvbWVuLzYzLmpwZyIsIm1lZGl1bSI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lZC9tZW4vNjMuanBnIiwidGh1bWJuYWlsIjoiaHR0cHM6Ly9yYW5kb211c2VyLm1lL2FwaS9wb3J0cmFpdHMvdGh1bWIvbWVuLzYzLmpwZyJ9LCJpZCI6MTAwLCJpYXQiOjE0NjMyNjA2NDYsImV4cCI6MTQ2NTg1MjY0Nn0.BLaPgmwfB8SiUoGuoT1oHaKbDLNFriG6ZO8Kl29E_pg"
           }
         ],
         "responses": {
@@ -114,6 +140,14 @@
             "description": "ID to find",
             "required": true,
             "type": "integer"
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "JWT token",
+            "required": true,
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1NzM3OTVlMTg3MzljYjRjMmQwMjYxMzAiLCJnZW5kZXIiOiJtYWxlIiwibmFtZSI6eyJ0aXRsZSI6Im1yIiwiZmlyc3QiOiJzdGFubGV5IiwibGFzdCI6ImJlY2sifSwibG9jYXRpb24iOnsic3RyZWV0IjoiMzIyNiBub3ZhcmEgYXZlbnVlIiwiY2l0eSI6IkF0aGVucnkiLCJzdGF0ZSI6Im5lYnJhc2thIiwiemlwIjo3Mzk5NH0sImVtYWlsIjoic3RhbmxleS5iZWNrQGV4YW1wbGUuY29tIiwidXNlcm5hbWUiOiJsYXp5ZHVjazU4OCIsInBhc3N3b3JkIjoiYnVkZGhhIiwic2FsdCI6InZqV1IzWWMxIiwibWQ1IjoiN2NiY2ZjNjY1OWE0MzM0YWVmNGViZWFlNjQwNmQwYjMiLCJzaGExIjoiNmViNzgyOTUzZjM5NzIwYjY2YWJiMWE3MDkzMjM3MmU0MjJiYzJkMCIsInNoYTI1NiI6ImU0ZDNlNThhNGIzYjI4YzIwZmY4YzNiYThhZjVhYzA3MjBhZDM1MmEzMmM4ZjVmMzQ4ZDAwYzAyZmE0MmUxY2EiLCJyZWdpc3RlcmVkIjoxMTkzMjIzNjYxLCJkb2IiOjQzMTgzMjcwNCwicGhvbmUiOiIwMjEtNzY4LTg0MzEiLCJjZWxsIjoiMDgxLTc1OS0yODUwIiwiUFBTIjoiNzQ2Njc3M1QiLCJwaWN0dXJlIjp7ImxhcmdlIjoiaHR0cHM6Ly9yYW5kb211c2VyLm1lL2FwaS9wb3J0cmFpdHMvbWVuLzYzLmpwZyIsIm1lZGl1bSI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lZC9tZW4vNjMuanBnIiwidGh1bWJuYWlsIjoiaHR0cHM6Ly9yYW5kb211c2VyLm1lL2FwaS9wb3J0cmFpdHMvdGh1bWIvbWVuLzYzLmpwZyJ9LCJpZCI6MTAwLCJpYXQiOjE0NjMyNjA2NDYsImV4cCI6MTQ2NTg1MjY0Nn0.BLaPgmwfB8SiUoGuoT1oHaKbDLNFriG6ZO8Kl29E_pg"
           }
         ],
         "responses": {
@@ -152,6 +186,14 @@
             "schema": {
               "$ref": "#/definitions/user"
             }
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "JWT token",
+            "required": true,
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1NzM3OTVlMTg3MzljYjRjMmQwMjYxMzAiLCJnZW5kZXIiOiJtYWxlIiwibmFtZSI6eyJ0aXRsZSI6Im1yIiwiZmlyc3QiOiJzdGFubGV5IiwibGFzdCI6ImJlY2sifSwibG9jYXRpb24iOnsic3RyZWV0IjoiMzIyNiBub3ZhcmEgYXZlbnVlIiwiY2l0eSI6IkF0aGVucnkiLCJzdGF0ZSI6Im5lYnJhc2thIiwiemlwIjo3Mzk5NH0sImVtYWlsIjoic3RhbmxleS5iZWNrQGV4YW1wbGUuY29tIiwidXNlcm5hbWUiOiJsYXp5ZHVjazU4OCIsInBhc3N3b3JkIjoiYnVkZGhhIiwic2FsdCI6InZqV1IzWWMxIiwibWQ1IjoiN2NiY2ZjNjY1OWE0MzM0YWVmNGViZWFlNjQwNmQwYjMiLCJzaGExIjoiNmViNzgyOTUzZjM5NzIwYjY2YWJiMWE3MDkzMjM3MmU0MjJiYzJkMCIsInNoYTI1NiI6ImU0ZDNlNThhNGIzYjI4YzIwZmY4YzNiYThhZjVhYzA3MjBhZDM1MmEzMmM4ZjVmMzQ4ZDAwYzAyZmE0MmUxY2EiLCJyZWdpc3RlcmVkIjoxMTkzMjIzNjYxLCJkb2IiOjQzMTgzMjcwNCwicGhvbmUiOiIwMjEtNzY4LTg0MzEiLCJjZWxsIjoiMDgxLTc1OS0yODUwIiwiUFBTIjoiNzQ2Njc3M1QiLCJwaWN0dXJlIjp7ImxhcmdlIjoiaHR0cHM6Ly9yYW5kb211c2VyLm1lL2FwaS9wb3J0cmFpdHMvbWVuLzYzLmpwZyIsIm1lZGl1bSI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lZC9tZW4vNjMuanBnIiwidGh1bWJuYWlsIjoiaHR0cHM6Ly9yYW5kb211c2VyLm1lL2FwaS9wb3J0cmFpdHMvdGh1bWIvbWVuLzYzLmpwZyJ9LCJpZCI6MTAwLCJpYXQiOjE0NjMyNjA2NDYsImV4cCI6MTQ2NTg1MjY0Nn0.BLaPgmwfB8SiUoGuoT1oHaKbDLNFriG6ZO8Kl29E_pg"
           }
         ],
         "responses": {
@@ -199,6 +241,14 @@
             "required": false,
             "type": "string",
             "default": "6443903T"
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "JWT token",
+            "required": true,
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1NzM3OTVlMTg3MzljYjRjMmQwMjYxMzAiLCJnZW5kZXIiOiJtYWxlIiwibmFtZSI6eyJ0aXRsZSI6Im1yIiwiZmlyc3QiOiJzdGFubGV5IiwibGFzdCI6ImJlY2sifSwibG9jYXRpb24iOnsic3RyZWV0IjoiMzIyNiBub3ZhcmEgYXZlbnVlIiwiY2l0eSI6IkF0aGVucnkiLCJzdGF0ZSI6Im5lYnJhc2thIiwiemlwIjo3Mzk5NH0sImVtYWlsIjoic3RhbmxleS5iZWNrQGV4YW1wbGUuY29tIiwidXNlcm5hbWUiOiJsYXp5ZHVjazU4OCIsInBhc3N3b3JkIjoiYnVkZGhhIiwic2FsdCI6InZqV1IzWWMxIiwibWQ1IjoiN2NiY2ZjNjY1OWE0MzM0YWVmNGViZWFlNjQwNmQwYjMiLCJzaGExIjoiNmViNzgyOTUzZjM5NzIwYjY2YWJiMWE3MDkzMjM3MmU0MjJiYzJkMCIsInNoYTI1NiI6ImU0ZDNlNThhNGIzYjI4YzIwZmY4YzNiYThhZjVhYzA3MjBhZDM1MmEzMmM4ZjVmMzQ4ZDAwYzAyZmE0MmUxY2EiLCJyZWdpc3RlcmVkIjoxMTkzMjIzNjYxLCJkb2IiOjQzMTgzMjcwNCwicGhvbmUiOiIwMjEtNzY4LTg0MzEiLCJjZWxsIjoiMDgxLTc1OS0yODUwIiwiUFBTIjoiNzQ2Njc3M1QiLCJwaWN0dXJlIjp7ImxhcmdlIjoiaHR0cHM6Ly9yYW5kb211c2VyLm1lL2FwaS9wb3J0cmFpdHMvbWVuLzYzLmpwZyIsIm1lZGl1bSI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lZC9tZW4vNjMuanBnIiwidGh1bWJuYWlsIjoiaHR0cHM6Ly9yYW5kb211c2VyLm1lL2FwaS9wb3J0cmFpdHMvdGh1bWIvbWVuLzYzLmpwZyJ9LCJpZCI6MTAwLCJpYXQiOjE0NjMyNjA2NDYsImV4cCI6MTQ2NTg1MjY0Nn0.BLaPgmwfB8SiUoGuoT1oHaKbDLNFriG6ZO8Kl29E_pg"
           }
         ],
         "responses": {
@@ -214,7 +264,7 @@
         }
       }
     },
-    "/api/resetData": {
+    "/api/reset_data": {
       "get": {
         "tags": ["Users"],
         "description": "deletes all data and repopulates it from the json gist file",
@@ -223,7 +273,14 @@
           "application/json"
         ],
         "parameters": [
-
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "JWT token",
+            "required": true,
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1NzM3OTVlMTg3MzljYjRjMmQwMjYxMzAiLCJnZW5kZXIiOiJtYWxlIiwibmFtZSI6eyJ0aXRsZSI6Im1yIiwiZmlyc3QiOiJzdGFubGV5IiwibGFzdCI6ImJlY2sifSwibG9jYXRpb24iOnsic3RyZWV0IjoiMzIyNiBub3ZhcmEgYXZlbnVlIiwiY2l0eSI6IkF0aGVucnkiLCJzdGF0ZSI6Im5lYnJhc2thIiwiemlwIjo3Mzk5NH0sImVtYWlsIjoic3RhbmxleS5iZWNrQGV4YW1wbGUuY29tIiwidXNlcm5hbWUiOiJsYXp5ZHVjazU4OCIsInBhc3N3b3JkIjoiYnVkZGhhIiwic2FsdCI6InZqV1IzWWMxIiwibWQ1IjoiN2NiY2ZjNjY1OWE0MzM0YWVmNGViZWFlNjQwNmQwYjMiLCJzaGExIjoiNmViNzgyOTUzZjM5NzIwYjY2YWJiMWE3MDkzMjM3MmU0MjJiYzJkMCIsInNoYTI1NiI6ImU0ZDNlNThhNGIzYjI4YzIwZmY4YzNiYThhZjVhYzA3MjBhZDM1MmEzMmM4ZjVmMzQ4ZDAwYzAyZmE0MmUxY2EiLCJyZWdpc3RlcmVkIjoxMTkzMjIzNjYxLCJkb2IiOjQzMTgzMjcwNCwicGhvbmUiOiIwMjEtNzY4LTg0MzEiLCJjZWxsIjoiMDgxLTc1OS0yODUwIiwiUFBTIjoiNzQ2Njc3M1QiLCJwaWN0dXJlIjp7ImxhcmdlIjoiaHR0cHM6Ly9yYW5kb211c2VyLm1lL2FwaS9wb3J0cmFpdHMvbWVuLzYzLmpwZyIsIm1lZGl1bSI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lZC9tZW4vNjMuanBnIiwidGh1bWJuYWlsIjoiaHR0cHM6Ly9yYW5kb211c2VyLm1lL2FwaS9wb3J0cmFpdHMvdGh1bWIvbWVuLzYzLmpwZyJ9LCJpZCI6MTAwLCJpYXQiOjE0NjMyNjA2NDYsImV4cCI6MTQ2NTg1MjY0Nn0.BLaPgmwfB8SiUoGuoT1oHaKbDLNFriG6ZO8Kl29E_pg"
+          }
         ],
         "responses": {
           "200": {
@@ -336,12 +393,12 @@
         "email":{
           "required":true,
           "type": "email",
-          "example": "stanley.beck@example.com"
+          "example": "swagger.beck@example.com"
         },
         "username":{
           "required":true,
           "type": "string",
-          "example": "lazyduck588"
+          "example": "swaggerlazyduck588"
         },
         "password":{
           "required":true,
@@ -391,7 +448,7 @@
         "PPS":{
           "required":true,
           "type": "string",
-          "example": "7466773T"
+          "example": "swagger7466773T"
         },
         "picture": {
           "properties": {
@@ -482,7 +539,7 @@
         "token":{
           "required":true,
           "type": "string",
-          "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9"
+          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1NzM3OTVlMTg3MzljYjRjMmQwMjYxMzAiLCJnZW5kZXIiOiJtYWxlIiwibmFtZSI6eyJ0aXRsZSI6Im1yIiwiZmlyc3QiOiJzdGFubGV5IiwibGFzdCI6ImJlY2sifSwibG9jYXRpb24iOnsic3RyZWV0IjoiMzIyNiBub3ZhcmEgYXZlbnVlIiwiY2l0eSI6IkF0aGVucnkiLCJzdGF0ZSI6Im5lYnJhc2thIiwiemlwIjo3Mzk5NH0sImVtYWlsIjoic3RhbmxleS5iZWNrQGV4YW1wbGUuY29tIiwidXNlcm5hbWUiOiJsYXp5ZHVjazU4OCIsInBhc3N3b3JkIjoiYnVkZGhhIiwic2FsdCI6InZqV1IzWWMxIiwibWQ1IjoiN2NiY2ZjNjY1OWE0MzM0YWVmNGViZWFlNjQwNmQwYjMiLCJzaGExIjoiNmViNzgyOTUzZjM5NzIwYjY2YWJiMWE3MDkzMjM3MmU0MjJiYzJkMCIsInNoYTI1NiI6ImU0ZDNlNThhNGIzYjI4YzIwZmY4YzNiYThhZjVhYzA3MjBhZDM1MmEzMmM4ZjVmMzQ4ZDAwYzAyZmE0MmUxY2EiLCJyZWdpc3RlcmVkIjoxMTkzMjIzNjYxLCJkb2IiOjQzMTgzMjcwNCwicGhvbmUiOiIwMjEtNzY4LTg0MzEiLCJjZWxsIjoiMDgxLTc1OS0yODUwIiwiUFBTIjoiNzQ2Njc3M1QiLCJwaWN0dXJlIjp7ImxhcmdlIjoiaHR0cHM6Ly9yYW5kb211c2VyLm1lL2FwaS9wb3J0cmFpdHMvbWVuLzYzLmpwZyIsIm1lZGl1bSI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lZC9tZW4vNjMuanBnIiwidGh1bWJuYWlsIjoiaHR0cHM6Ly9yYW5kb211c2VyLm1lL2FwaS9wb3J0cmFpdHMvdGh1bWIvbWVuLzYzLmpwZyJ9LCJpZCI6MTAwLCJpYXQiOjE0NjMyNjA2NDYsImV4cCI6MTQ2NTg1MjY0Nn0.BLaPgmwfB8SiUoGuoT1oHaKbDLNFriG6ZO8Kl29E_pg"
         }
       }
     }

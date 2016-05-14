@@ -44,12 +44,17 @@ if (argv.domain !== undefined) {
     console.log('No --domain=xxx specified, taking default hostname "localhost".')
 }
 var applicationUrl = 'http://' + domain + ':' + port;
-console.log('snapJob API running on ' + applicationUrl);
+console.log('swagger ui running on ' + applicationUrl);
 swagger.configure(applicationUrl, '1.0.0');
 
 
+
 routes.init();
+
 app.get('/',                routes.index);
+app.post('/api/authenticate', routes.authenticate);
+
+app.use(routes.jwt_middleware);
 app.get('/api/users/find',  routes.get_user_by);
 app.delete('/api/users/:id', routes.delete_user);
 app.get('/api/users/:id',   routes.get_user);
@@ -57,7 +62,7 @@ app.put('/api/users/:id',   routes.update_user);
 app.post('/api/users',      routes.create_user);
 app.get('/api/users',       routes.get_all_users);
 app.get('/api/reset_data',  routes.populate);
-app.post('/api/authenticate', routes.authenticate);
+
 
 
 http.createServer(app).listen(port, function () {
