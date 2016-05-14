@@ -6,21 +6,11 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     morgan  = require('morgan'),
     argv = require('minimist')(process.argv.slice(2)),
-    swagger = require("swagger-node-express");
+    swagger = require("swagger-node-express"),
+    config = require('./config');
 
 var app     = express(),
     subpath = express();
-
-
-// Configuration
-// try {
-//     var configJSON = fs.readFileSync(__dirname + "/config.json");
-//     var config = JSON.parse(configJSON.toString());
-// } catch(e) {
-//     console.error("File config.json not found or is invalid: " + e.message);
-//     process.exit(1);
-// }
-// routes.init(config);
 
 var port = process.env.PORT || 5000;
 app.set('port', port);
@@ -61,12 +51,13 @@ swagger.configure(applicationUrl, '1.0.0');
 routes.init();
 app.get('/',                routes.index);
 app.get('/api/users/find',  routes.get_user_by);
-app.delete('/api/users/:id',routes.delete_user);
+app.delete('/api/users/:id', routes.delete_user);
 app.get('/api/users/:id',   routes.get_user);
 app.put('/api/users/:id',   routes.update_user);
 app.post('/api/users',      routes.create_user);
 app.get('/api/users',       routes.get_all_users);
 app.get('/api/reset_data',  routes.populate);
+app.post('/api/authenticate', routes.authenticate);
 
 
 http.createServer(app).listen(port, function () {

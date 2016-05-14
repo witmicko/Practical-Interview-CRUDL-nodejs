@@ -4,7 +4,10 @@
 "use strict";
 var HttpStatus = require('http-status-codes');
 var db = require('../lib/db')();
+var jwt = require('jsonwebtoken');
 var validator = require('../lib/user_validator');
+var config = require('../config');
+
 
 exports.index = function (req, res) {
     res.status(HttpStatus.OK).json({'hello': 'world'});
@@ -66,7 +69,9 @@ exports.update_user = function (req, res) {
 
     new_user.id = id;
     db.get_user(id).then(function (doc) {
-        if (doc.length === 0) return res.status(HttpStatus.NOT_FOUND).json({err: "User not found"});
+        if (doc.length === 0) {
+            return res.status(HttpStatus.NOT_FOUND).json({err: "User not found"});
+        }
         var old_user = doc[0],
         //check if email, username or pps were changed
             uname_upd = new_user.username.localeCompare(old_user.username) !== 0,
@@ -83,7 +88,7 @@ exports.update_user = function (req, res) {
     });
 };
 
-exports.delete_user = function(req, res){
+exports.delete_user = function (req, res) {
     db.delete_user(req.params.id).then(function (r) {
         return res.status(HttpStatus.OK).json(r.result);
     }).catch(function (err) {
@@ -156,5 +161,19 @@ exports.init = function () {
     db.connect().then(function (result) {
     }).then(function () {
         db.reset_data();
+    });
+};
+
+exports.authenticate = function (req, res) {
+    var usr = req.body.username,
+        pwd = req.body.password;
+
+    db.find_by_username(usr).then(function (user) {
+        if (user.length === 0 || user[0].password.localeCompare(pwd) !== 0) {
+            res.status(HttpStatus.FORBIDDEN).json({err: "invalid password or username"});
+        } else {
+            var token = jwt.sign(user[0], config.secret, {expiresIn: '1h'});
+            res.status(HttpStatus.OK).json({token: token});
+        }
     });
 };

@@ -53,9 +53,7 @@
             }
           }
         }
-      }
-    },
-    "/api/users": {
+      },
       "get": {
         "tags": ["Users"],
         "description": "Returns entire collection of users",
@@ -242,6 +240,46 @@
           }
         }
       }
+    },
+    "/api/authenticate": {
+      "post": {
+        "tags": ["Users"],
+        "description": "Authenticates user",
+        "operationId": "for the URL",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "auth_request",
+            "in": "body",
+            "description": "Username and password to authenticate",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/auth_request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "auth success",
+            "schema": {
+              "$ref": "#/definitions/auth_success"
+            }
+          },
+          "403": {
+            "description": "auth fail",
+            "schema": {
+              "properties": {
+                "err": {
+                  "type": "string",
+                  "example": "invalid password or username"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -423,6 +461,28 @@
           "required":true,
           "type": "boolean",
           "example": true
+        }
+      }
+    },"auth_request":{
+      "properties":{
+        "username":{
+          "required":true,
+          "type": "string",
+          "example": "lazyduck588"
+        },
+        "password":{
+          "required":true,
+          "type": "string",
+          "example": "buddha"
+        }
+      }
+    },
+    "auth_success":{
+      "properties":{
+        "token":{
+          "required":true,
+          "type": "string",
+          "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9"
         }
       }
     }
