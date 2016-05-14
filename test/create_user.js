@@ -44,10 +44,8 @@ var user_1 = {
 
 describe('User', function () {
     before(function () {
-        console.log('removing user');
         MongoClient.connect('mongodb://localhost:27017/test').then(function (db) {
             db.collection('users').removeMany({'username': user_1.username});
-            done();
         });
     });
 
@@ -115,7 +113,6 @@ describe('User', function () {
                         throw err;
                     }
                     var keys = res.body.invalid_keys;
-                    console.log(keys);
                     // should(res).have.property('status', HttpStatus.BAD_REQUEST);
                     // should(keys.location).containEql('invalid or missing');
                     // should(keys.phone).containEql('invalid or missing');

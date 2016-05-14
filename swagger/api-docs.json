@@ -12,9 +12,7 @@
     "description": "CRUDL API for users"
     }
   ],
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["http", "https"],
   "consumes": [
     "application/json"
   ],
@@ -23,39 +21,363 @@
   ],
   "paths": {
     "/api/createUser": {
-       "post": {
-          "tags": ["Users"],
-          "description": "Creates new user",
-          "operationId": "for the URL",
-          "produces": [
-            "application/json"
-          ],
-          "parameters": [
-              {
-                "name": "User",
-                "in": "body",
-                "description": "User to add to the database",
-                "required": true,
-              "schema": {
-                "$ref": "#/definitions/user"
-                }
+      "post": {
+        "tags": ["Users"],
+        "description": "Creates new user",
+        "operationId": "for the URL",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "description": "User to add to the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/user"
             }
-          ],
-          "responses": {
-            "201": {
-              "description": "create response",
-              "schema": {
-                 "$ref": "#/definitions/response_create_user_201"
-              }
-            },
-            "400":{
-              "description": "array of missing or invalid user data fields",
-              "schema": {
-                "$ref": "#/definitions/response_create_user_400"
-              }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "create response",
+            "schema": {
+              "$ref": "#/definitions/response_create_user_201"
+            }
+          },
+          "400":{
+            "description": "array of missing or invalid user data fields",
+            "schema": {
+              "$ref": "#/definitions/response_create_user_400"
             }
           }
         }
+      }
+    },
+    "/api/getUserByEmail": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Returns user matching email",
+        "operationId": "for the URL",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "body",
+            "description": "user's email",
+            "required": true,
+            "type": "string",
+            "default": "brendan.doyle@example.com"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          },
+          "404":{
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/api/getUserByUsername": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Returns user matching the username",
+        "operationId": "for the URL",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "body",
+            "description": "user's username",
+            "required": true,
+            "type": "string",
+            "default": "orangebutterfly881"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          },
+          "404":{
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/api/getUserByPps": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Returns user matching pps number",
+        "operationId": "for the URL",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "body",
+            "description": "user's pps no.",
+            "required": true,
+            "type": "string",
+            "default": "6443903T"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          },
+          "404":{
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/api/getAllUsers": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Returns entire collection of users",
+        "operationId": "for the URL",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of users",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    },
+    "/api/deleteUserByEmail": {
+      "delete": {
+        "tags": ["Users"],
+        "description": "Deletes user matching email",
+        "operationId": "for the URL",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "body",
+            "description": "user's email",
+            "required": true,
+            "type": "string",
+            "default": "brendan.doyle@example.com"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Remove result",
+            "schema": {
+              "$ref": "#/definitions/result"
+            }
+          },
+          "404":{
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/api/deleteUserByUsername": {
+      "delete": {
+        "tags": ["Users"],
+        "description": "Deletes user matching the username",
+        "operationId": "for the URL",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "body",
+            "description": "user's username",
+            "required": true,
+            "type": "string",
+            "default": "orangebutterfly881"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Remove result",
+            "schema": {
+              "$ref": "#/definitions/result"
+            }
+          },
+          "404":{
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/api/deleteUserByPps": {
+      "delete": {
+        "tags": ["Users"],
+        "description": "Deletes user matching pps number",
+        "operationId": "for the URL",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "body",
+            "description": "user's pps no.",
+            "required": true,
+            "type": "string",
+            "default": "6443903T"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Remove result",
+            "schema": {
+              "$ref": "#/definitions/result"
+            }
+          },
+          "404":{
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/api/updateUserByEmail": {
+      "get": {
+        "tags": ["Users"],
+        "description": "updates user and returns operation result",
+        "operationId": "for the URL",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "body",
+            "description": "user's email",
+            "required": true,
+            "type": "string",
+            "default": "brendan.doyle@example.com"
+          },
+          {
+            "name": "Updated user",
+            "in": "body",
+            "description": "User to add to the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "schema": {
+              "$ref": "#/definitions/result"
+            }
+          },
+          "404":{
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/api/updateUserByUsername": {
+      "get": {
+        "tags": ["Users"],
+        "description": "updates user and returns operation result",
+        "operationId": "for the URL",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "body",
+            "description": "user's username",
+            "required": true,
+            "type": "string",
+            "default": "orangebutterfly881"
+          },
+          {
+            "name": "Updated user",
+            "in": "body",
+            "description": "User to add to the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "schema": {
+              "$ref": "#/definitions/result"
+            }
+          },
+          "404":{
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/api/updateUserByPps": {
+      "get": {
+        "tags": ["Users"],
+        "description": "updates user and returns operation result",
+        "operationId": "for the URL",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "body",
+            "description": "user's pps no.",
+            "required": true,
+            "type": "string",
+            "default": "6443903T"
+          },
+          {
+            "name": "Updated user",
+            "in": "body",
+            "description": "User to add to the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "schema": {
+              "$ref": "#/definitions/result"
+            }
+          },
+          "404":{
+            "description": "User not found"
+          }
+        }
+      }
     },
     "/api/resetData": {
       "get": {
@@ -307,6 +629,15 @@
           "required":true,
           "type": "string",
           "example": "Cannot read property 'collection' of undefined"
+        }
+      }
+    },
+    "result": {
+      "properties": {
+        "ok": {
+          "required":true,
+          "type": "boolean",
+          "example": true
         }
       }
     }

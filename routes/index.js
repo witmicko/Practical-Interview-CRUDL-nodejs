@@ -16,7 +16,7 @@ exports.index = function (req, res) {
  4. Minimal scaffolding / auto code generation
     -- we want you to show your ability and creative side so please keep this to a minimum
  */
-exports.createUser = function (req, res) {
+exports.create_user = function (req, res) {
     var new_user  = req.body,
         valid = validator.validate_user(new_user),
         invalid_keys = {};
@@ -39,7 +39,6 @@ exports.createUser = function (req, res) {
         });
     }).then(function () {
         if (true !== valid || Object.keys(invalid_keys).length > 0) {
-            console.log(valid, invalid_keys);
             Object.keys(valid).forEach(function (key) {
                 invalid_keys[key] = "invalid or missing";
             });
@@ -53,6 +52,8 @@ exports.createUser = function (req, res) {
     });
 };
 
+
+
 exports.populate = function (req, res) {
     var result = db.resetData();
     if (result.err) {
@@ -64,7 +65,6 @@ exports.populate = function (req, res) {
 
 exports.init = function () {
     db.connect().then(function (result) {
-        console.log(result);
     }).then(function () {
         db.resetData();
     });
