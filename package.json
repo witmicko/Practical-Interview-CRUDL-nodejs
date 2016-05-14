@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "node app.js",
-    "test" : "mocha"
+    "test": "mocha"
   },
   "dependencies": {
     "bluebird": "^3.3.5",
@@ -29,6 +29,8 @@
     "grunt": "~0.4.5",
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-nodeunit": "~0.4.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-express": "^1.4.1",
     "should": "^8.3.1",
     "supertest": "^1.2.0"
   },

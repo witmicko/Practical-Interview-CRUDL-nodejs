@@ -18,8 +18,8 @@ var app = express();
 // }
 // routes.init(config);
 
-
-app.set('port', (process.env.PORT || 5000));
+var port = process.env.PORT || 5000;
+app.set('port', port);
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
@@ -35,6 +35,6 @@ app.post('/api/createUser',  routes.createUser);
 app.get('/api/resetData',   routes.populate);
 
 
-http.createServer(app).listen(app.get('port'), function () {
-    console.log("Express server listening on port " + app.get('port'));
+http.createServer(app).listen(port, function () {
+    console.log("Express server listening on port " + port);
 });
