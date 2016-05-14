@@ -67,3 +67,6 @@ app.get('/api/resetData',   routes.populate);
 http.createServer(app).listen(port, function () {
     console.log("Express server listening on port " + port);
 });
+
+// expose app
+exports = module.exports = app;

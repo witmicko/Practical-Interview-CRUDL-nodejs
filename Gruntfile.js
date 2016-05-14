@@ -46,7 +46,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-express");
 
     // Livereload task.
-    grunt.registerTask("server", ["express", "watch"]);
+    grunt.registerTask("serve", ["express", "watch"]);
 
     // Default code quality task.
     grunt.registerTask("default", ["jshint"]);
