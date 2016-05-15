@@ -1,16 +1,15 @@
 language: node_js
 node_js:
-  - 4.4.4
-
+- 4.4.4
 services:
-  - mongodb
-
+- mongodb
 before_script:
-  - mongo test --eval "db.getCollection('users').insert({'username':'gimme', 'password':'token'});"
-  - mongo test --eval "db.getCollection('users').find({});"
-
+- mongo test --eval "db.getCollection('users').insert({'username':'gimme', 'password':'token'});"
+- mongo test --eval "db.getCollection('users').find({});"
 deploy:
   provider: heroku
   api_key:
-    secure: "pCm9W/tUTvcQv4VrLOuFyBBAFO84qzSFcYzj9xp191BmBGf/sEaiVl9Gz95geM2OViH4e851ByQ5MSTKwQpn0gsjJSpFWo8RQ10vSind8ZDb0Dktcy0AJfGndNdxxe8ALEkU6Ji1Qu/PUi+iqR68Lz58OaPm1idpuEujPP0SajDJmgPbckeeX8R2Cur7Im0ev/0gei6J36QX+CwlbCZ+tJSFzwq9ry35tmrfYuWadwVRpCYnyihN6GXTvlDUyLp+nF8Lx0uPaRLlBJKDEE4MG3adjIzgw/XN03DUoSC7rQnGGgitWed9Kf84QHdjT5CZKv6rEE268YsnxmhyTK7dJKI9Pq6BMheetBvsVUtFagVOdw3q0Y/GLKc0IooToqfmRIukd2djp3gl3h0xPaYdZTcFWu9pQcTK1N0i0ibffoKOsAPizEwdj/beL4f4Roqnezmy1t1kc/rI+ajh9CcnKWg1T/usMznSrLGU/c05Q7ckopue19Xi5ELAZ0WxPmtLKV1l4wtGBdZD6N3aBOCKFRtBEQwn1u5nxmb/hw7/zTYSr/d5nysJksReQOsHfgpociZXCOCjbD/EWFh4Xghqg1fQS50PCGfGWRo6DbwUtz60qy4Ds6W/oa4ikXQO2mSiZK5yQbMfXnqkiyL1Qy4YWY0Bj3az1LcGg/mFevyrekw="
+    secure: 0tEAaS9nXvtGlby+EGP87FKKKbkcD6IYXJd6M3nOE6Swv5qHL9a7GRBl+mpxHji2fMcewc2dVqg6fdvkqJOtkiX+PLf5uMFOP3/YlG3cAEMw4p6bOh1fqobNXEi6Bqk3Kh54ACk+/+bs9UC/8vjL6b3pOyn1B085QrV0GL6m8cQrS7ycCgwafSEmqbEiPLycRUv0FfJwVTy+oW4EaQaaukATQv2+b8lW5FyoX57iRTkE6dH1m06iMp1cKP0Wknd071Ufb+8cmzV3IiG/miWWiTmFlErhiNMV8eRbxZbY8H+05woblJnQwRjm/JsYQ5lN8cio9SlTnO7RfdcTDwCbp7YmpVz40q99PdElbjm+qIe1yHIUshjeXT2LFXrnsrLDQu8y99CGXFUwwnX3/b0eg2/7rJnFjzIBjGDAd0ZrCflSoTDf5tx5HklzcYTVvK7jMmgcnPccn/lxH4L+R+jG8KIxYCXQjOp6MiCamkYlI4doXuaH29S+sy1Xk+ioM23QD+kUAgTZbQ8t9SU2dIMxS/bEeKrMISiCfs0cMkx5k7sWduGXhA+Csehw45EdTdcQ2FNmEooAhE2lpU6Nx6cssZWkz8TtIxQe74pmj232NJsCpTBrq6cu2PWFQEj+7f8nzDaPJdeGoBCN5GnRq6yH1DznAAMX3N5y/n8IYd7JRhk=
   app: mo-practical-interview
+  on:
+    repo: witmicko/Practical-Interview-CRUDL-nodejs
