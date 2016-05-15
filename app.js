@@ -7,14 +7,18 @@ var express = require('express'),
     morgan  = require('morgan'),
     argv = require('minimist')(process.argv.slice(2)),
     swagger = require("swagger-node-express"),
-    config = require('./config');
+    config = require('./config'),
+    logger = require("./lib/logger");
 
 var app     = express(),
     subpath = express();
 
 var port = process.env.PORT || 5000;
 app.set('port', port);
-app.use(morgan('dev'));
+
+logger.debug("Overriding 'Express' logger");
+app.use(morgan({ "stream": logger.stream }));
+
 app.use(bodyParser());
 app.use(bodyParser.json());
 
@@ -45,6 +49,7 @@ if (argv.domain !== undefined) {
 }
 var applicationUrl = 'http://' + domain + ':' + port;
 console.log('swagger ui running on ' + applicationUrl);
+logger.info("App started", applicationUrl);
 swagger.configure(applicationUrl, '1.0.0');
 
 
