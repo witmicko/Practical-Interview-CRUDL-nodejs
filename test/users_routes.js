@@ -46,7 +46,7 @@ var url = 'http://localhost:5000',
     token;
 
 describe('hooks', function() {
-    console.log('connecting to: ' + db_url);
+    console.log('mocha db:', db_url);
     var server;
     before(function (done) {
         server = require('../app');
