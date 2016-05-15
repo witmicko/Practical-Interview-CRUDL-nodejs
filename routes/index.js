@@ -158,17 +158,13 @@ exports.populate = function (req, res) {
 };
 
 exports.init = function () {
-    db.connect().then(function () {
-        db.reset_data();
-    });
+    db.connect();
 };
 
 exports.authenticate = function (req, res) {
     var usr = req.body.username,
         pwd = req.body.password;
-    console.log(usr, pwd);
     db.find_by_username(usr).then(function (user) {
-        console.log(user);
         if (user.length === 0 || user[0].password.localeCompare(pwd) !== 0) {
             res.status(HttpStatus.FORBIDDEN).json({err: "invalid password or username"});
         } else {

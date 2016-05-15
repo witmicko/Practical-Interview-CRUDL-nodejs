@@ -48,7 +48,7 @@ console.log('swagger ui running on ' + applicationUrl);
 swagger.configure(applicationUrl, '1.0.0');
 
 
-// routes.init();
+routes.init();
 
 app.get('/',                routes.index);
 app.post('/api/authenticate', routes.authenticate);
