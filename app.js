@@ -48,7 +48,6 @@ if (argv.domain !== undefined) {
     console.log('No --domain=xxx specified, taking default hostname "localhost".')
 }
 var applicationUrl = 'http://' + domain + ':' + port;
-console.log('swagger ui running on ' + applicationUrl);
 logger.info("App started", applicationUrl);
 swagger.configure(applicationUrl, '1.0.0');
 
@@ -70,7 +69,7 @@ app.get('/api/reset_data',  routes.populate);
 
 
 var server = http.createServer(app).listen(port, function () {
-    console.log("Express server listening on port " + port);
+    logger.info("Express server listening on port " + port);
 });
 
 // expose app
