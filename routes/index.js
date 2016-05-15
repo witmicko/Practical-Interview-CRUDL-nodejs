@@ -2,11 +2,12 @@
  * Created by witmi on 13/05/2016.
  */
 "use strict";
-var HttpStatus = require('http-status-codes');
-var db = require('../lib/db')();
-var jwt = require('jsonwebtoken');
-var validator = require('../lib/user_validator');
-var config = require('../config');
+var HttpStatus = require('http-status-codes'),
+    db  = require('../lib/db')(),
+    jwt = require('jsonwebtoken'),
+    validator = require('../lib/user_validator'),
+    logger    = require('../lib/logger'),
+    config    = require('../config');
 
 
 exports.index = function (req, res) {
@@ -49,6 +50,7 @@ exports.create_user = function (req, res) {
         } else {
             db.create_user(new_user).then(function (data) {
                 var id = {'id': data.ops[0].id};
+                logger.info("User added id:", id);
                 res.status(HttpStatus.CREATED).json(id);
             });
         }
@@ -164,9 +166,11 @@ exports.init = function () {
 exports.authenticate = function (req, res) {
     var usr = req.body.username,
         pwd = req.body.password;
+    
     db.find_by_username(usr).then(function (user) {
         if (user.length === 0 || user[0].password.localeCompare(pwd) !== 0) {
             res.status(HttpStatus.FORBIDDEN).json({err: "invalid password or username"});
+            logger.info("Failed auth u:", usr, "p:", pwd);
         } else {
             var token = jwt.sign(user[0], config.secret, {expiresIn: '1d'});
             res.status(HttpStatus.OK).json({token: token});
